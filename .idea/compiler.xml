@@ -3,20 +3,53 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pet-health-insurance" />
+      </profile>
+      <profile name="Annotation profile for Life_Insurance" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+        </processorPath>
+        <module name="HomeInsurance" />
+        <module name="Life_Insurance" />
+      </profile>
       <profile name="Annotation profile for AutoInsurance" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
         </processorPath>
-        <module name="AutoInsurance-main" />
+        <module name="AutoInsurance" />
+      </profile>
+      <profile name="Annotation profile for ServiceRegistry" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="Sellermodule" />
+        <module name="ServiceRegistry" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="API-Gateway" target="17" />
+      <module name="APIGateway" target="17" />
+      <module name="AutoInsurance-main" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="API-Gateway" options="-parameters" />
+      <module name="APIGateway" options="-parameters" />
+      <module name="AutoInsurance" options="-parameters" />
       <module name="AutoInsurance-main" options="-parameters" />
       <module name="HomeInsurance" options="-parameters" />
       <module name="Life_Insurance" options="-parameters" />
