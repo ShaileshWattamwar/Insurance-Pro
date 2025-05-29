@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: pet-health-insurance
+          uri: http://localhost:8081
+          predicates:
+              - Path=/pet_health_insurance/**
+          filters:
+              - StripPrefix=1
+#        - id: auto-insurance
+#          uri: http://localhost:8084
+#          predicates:
+#              - Path=/auto/**
+#          filters:
+#              - StripPrefix=1
+#
+#        - id: home-insurance
+#          uri: http://localhost:8089
+#          predicates:
+#                  - Path=/home/**
+#          filters:
+#                  - StripPrefix=1
+
+    # no static routes here; routes are defined in Java config
+
+
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+      config-url: /v3/api-docs/swagger-config
+      urls: []
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive: DEBUG

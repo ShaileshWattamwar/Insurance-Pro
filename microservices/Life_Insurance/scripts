@@ -1,0 +1,32 @@
+@echo off
+setlocal enabledelayedexpansion
+
+echo Starting build process for all microservices...
+
+REM List your actual directory names here exactly as shown in the file system
+set SERVICES=APIGateway AutoInsurance-main HomeInsurance Life_Insurance pet-health-insurance Sellermodule ServiceRegistry
+
+for %%S in (%SERVICES%) do (
+    echo.
+    echo ================================
+    echo Building %%S...
+    echo ================================
+    if exist "%%S" (
+        cd %%S
+        call mvn clean install
+        if errorlevel 1 (
+            echo.
+            echo ❌ ERROR: Build failed for %%S.
+            cd ..
+            pause
+            exit /b 1
+        )
+        cd ..
+    ) else (
+        echo ❌ Directory %%S does not exist!
+    )
+)
+
+echo.
+echo ✅ All microservices built successfully!
+pause
