@@ -1,0 +1,38 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: CLAIM-SERVICES-GATEWAY
+  cloud:
+    gateway:
+      routes:
+      - id: PREAUTH-CLAIM-SERVICES
+        uri: lb://PREAUTH-CLAIM-SERVICES
+        predicates:
+        - Path=/v1/preauth/**
+
+      - id: HEALTH-INSURANCE-CLAIM-MANAGEMENT
+        uri: lb://HEALTH-INSURANCE-CLAIM-MANAGEMENT
+        predicates:
+        - Path=/v1/claims/**, /api/hospitals/**, /api/policies/**, /api/policy-holders/**
+
+      - id: DOCUMENT-SERVICE
+        uri: lb://DOCUMENT-SERVICE
+        predicates:
+        - Path=/v1/documents/**
+
+      - id: NOTIFICATION-SERVICE
+        uri: lb://NOTIFICATION-SERVICE
+        predicates:
+        - Path=/v1/notifications/**
+      discovery:
+        locator:
+          enabled: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

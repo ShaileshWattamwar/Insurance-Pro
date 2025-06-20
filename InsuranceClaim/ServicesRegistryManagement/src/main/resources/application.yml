@@ -1,0 +1,14 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: SERVICES-REGISTRY-MANAGEMENT
+
+eureka:
+  instance:
+    hostname: localhost
+
+  client:
+    register-with-eureka: false   # won't get self registered This is 'Service Registry'
+    fetch-registry: false
